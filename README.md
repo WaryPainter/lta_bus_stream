@@ -21,6 +21,8 @@ LTA DataMall API ──► bus_producer.py ──► Kafka ──► Flink (flin
 | `fetch_bus_stops.py` | One-time script to download all bus stop metadata and save as a Parquet mapping file |
 | `flink_processor.py` | PyFlink streaming job that reads from Kafka, joins to the bus stop mapping, and writes enriched Parquet output |
 
+*Note:* The code currently has a static list of 5 bus stops codes, this will need to be modified based on which ones you want to monitor.
+
 ## Prerequisites
 
 - **Docker & Docker Compose** (recommended), or
