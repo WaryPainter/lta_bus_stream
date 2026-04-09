@@ -6,6 +6,12 @@ The goal of this project was:
 1) Go through setting up Kafka/Flink streaming pipeline as this is something I have experience with at work in terms of creating a pipeline on existing infrastructure.
 2) Familiarise myself with AI coding tools (CLI tools and trying out Antigravity), and refreshing my knowledge of a standard development process.
 
+## General Notes
+If you want to actually run this, there are a few things to be aware of:
+1) The code currently has a static list of 5 bus stops codes, this will need to be modified based on which ones you want to monitor.
+2) Based on the current scope of this project, Flink isn't the best option as you can use Kafka connectors to bypass having to maintain Flink, and join to the static mapping with the final outputted table. The goal of using Flink here was for learning, and it is also a solution which can scale to handle more complicated processing which would benefit from a streaming pipeline.
+
+
 ## Architecture
 
 ```
@@ -21,7 +27,6 @@ LTA DataMall API ──► bus_producer.py ──► Kafka ──► Flink (flin
 | `fetch_bus_stops.py` | One-time script to download all bus stop metadata and save as a Parquet mapping file |
 | `flink_processor.py` | PyFlink streaming job that reads from Kafka, joins to the bus stop mapping, and writes enriched Parquet output |
 
-*Note:* The code currently has a static list of 5 bus stops codes, this will need to be modified based on which ones you want to monitor.
 
 ## Prerequisites
 
