@@ -1,6 +1,10 @@
 # LTA Bus Arrivals — Real-Time Streaming Pipeline
 
-A real-time data pipeline that ingests Singapore bus arrival data from the [LTA DataMall API](https://datamall.lta.gov.sg/content/datamall/en.html), streams it through **Apache Kafka**, processes it with **Apache Flink** (joining to a static bus stop mapping), and writes enriched results to **Parquet** files.
+A real-time data pipeline that ingests Singapore bus arrival data from the [LTA DataMall API](https://datamall.lta.gov.sg/content/datamall/en.html), streams it through **Apache Kafka**, processes it with **Apache Flink** (joining to a static bus stop mapping), and writes the final output as **Parquet** files.
+
+The goal of this project was:
+1) Go through setting up Kafka/Flink streaming pipeline as this is something I have experience with at work in terms of creating a pipeline on existing infrastructure.
+2) Familiarise myself with AI coding tools (CLI tools and trying out Antigravity), and refreshing my knowledge of a standard development process.
 
 ## Architecture
 
