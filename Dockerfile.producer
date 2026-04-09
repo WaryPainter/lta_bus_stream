@@ -1,0 +1,9 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY bus_producer.py .
+
+RUN pip install --no-cache-dir confluent-kafka requests python-dotenv
+
+CMD ["python", "bus_producer.py"]

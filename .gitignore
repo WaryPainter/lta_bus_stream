@@ -1,0 +1,30 @@
+# Secrets
+.env
+
+# Kafka Local Data and Binaries
+k/
+kafka_data/
+cluster_id.txt
+
+# Flink and JDK Binaries
+flink_setup/
+
+# Python Virtual Environment
+jupyter_env/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebooks and Checkpoints
+.ipynb_checkpoints/
+Untitled.ipynb
+
+# Downloads/Temporary Files
+kafka_setup/
+
+# Data Directory
+data/
+
+# Debug / Testing Artifacts
+*.log
+*.pom

@@ -1,0 +1,13 @@
+.git
+.env
+data/
+kafka_data/
+k/
+flink_setup/
+jupyter_env/
+__pycache__/
+*.ps1
+*.md
+.gitignore
+.dockerignore
+cluster_id.txt

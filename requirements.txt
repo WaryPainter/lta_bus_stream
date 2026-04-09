@@ -1,0 +1,11 @@
+# Core
+confluent-kafka
+requests
+python-dotenv
+
+# Data Processing
+pandas
+pyarrow
+
+# Flink (only needed for local Flink development, not Docker)
+apache-flink

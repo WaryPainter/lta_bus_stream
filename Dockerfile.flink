@@ -1,0 +1,29 @@
+FROM flink:2.0-java11
+
+# Install Python and pip for PyFlink
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip wget && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install PyFlink (version-matched to Flink 2.x base image)
+RUN pip3 install apache-flink==2.2.0 --break-system-packages || pip3 install apache-flink==2.2.0
+
+# Create usrlib for custom connector JARs
+RUN mkdir -p /opt/flink/usrlib
+
+# Download required connector JARs (matched to Flink 2.x / PyFlink 2.2.0)
+RUN wget -q -P /opt/flink/usrlib/ https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-kafka/4.0.1-2.0/flink-sql-connector-kafka-4.0.1-2.0.jar && \
+    wget -q -P /opt/flink/usrlib/ https://repo1.maven.org/maven2/org/apache/flink/flink-parquet/2.2.0/flink-parquet-2.2.0.jar && \
+    wget -q -P /opt/flink/usrlib/ https://repo1.maven.org/maven2/org/apache/parquet/parquet-hadoop/1.15.2/parquet-hadoop-1.15.2.jar && \
+    wget -q -P /opt/flink/usrlib/ https://repo1.maven.org/maven2/org/apache/parquet/parquet-column/1.15.2/parquet-column-1.15.2.jar && \
+    wget -q -P /opt/flink/usrlib/ https://repo1.maven.org/maven2/org/apache/parquet/parquet-common/1.15.2/parquet-common-1.15.2.jar && \
+    wget -q -P /opt/flink/usrlib/ https://repo1.maven.org/maven2/org/apache/parquet/parquet-encoding/1.15.2/parquet-encoding-1.15.2.jar && \
+    wget -q -P /opt/flink/usrlib/ https://repo1.maven.org/maven2/org/apache/parquet/parquet-format-structures/1.15.2/parquet-format-structures-1.15.2.jar && \
+    wget -q -P /opt/flink/usrlib/ https://repo1.maven.org/maven2/org/apache/parquet/parquet-jackson/1.15.2/parquet-jackson-1.15.2.jar && \
+    wget -q -P /opt/flink/usrlib/ https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-common/3.3.6/hadoop-common-3.3.6.jar && \
+    wget -q -P /opt/flink/usrlib/ https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-mapreduce-client-core/3.3.6/hadoop-mapreduce-client-core-3.3.6.jar && \
+    wget -q -P /opt/flink/usrlib/ https://repo1.maven.org/maven2/org/apache/hadoop/thirdparty/hadoop-shaded-guava/1.1.1/hadoop-shaded-guava-1.1.1.jar && \
+    wget -q -P /opt/flink/usrlib/ https://repo1.maven.org/maven2/com/fasterxml/woodstox/woodstox-core/5.3.0/woodstox-core-5.3.0.jar && \
+    wget -q -P /opt/flink/usrlib/ https://repo1.maven.org/maven2/org/codehaus/woodstox/stax2-api/4.2.1/stax2-api-4.2.1.jar
+
+WORKDIR /opt/flink
